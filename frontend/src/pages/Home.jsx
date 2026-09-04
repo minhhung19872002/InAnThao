@@ -1,16 +1,17 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import Catalog from '../components/Catalog'
+import Footer from '../components/Footer'
 import Hero from '../components/Hero'
 import QuoteForm from '../components/QuoteForm'
 import Steps from '../components/Steps'
 import Ticker from '../components/Ticker'
 import Why from '../components/Why'
 
+/** The `isHome` branch of the design: hero → ticker → catalogue → steps → why → quote → footer. */
 export default function Home() {
   const { hash, state } = useLocation()
 
-  // Support deep links like /#bao-gia and /?cat=thiep-cuoi#danh-muc, plus scroll target from product page.
   useEffect(() => {
     const target = state?.scrollTo || (hash ? hash.slice(1) : null)
     if (!target) return
@@ -29,6 +30,7 @@ export default function Home() {
       <Steps />
       <Why />
       <QuoteForm />
+      <Footer />
     </>
   )
 }
