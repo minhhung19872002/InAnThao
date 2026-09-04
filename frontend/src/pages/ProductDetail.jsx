@@ -147,7 +147,7 @@ export default function ProductDetail() {
         </div>
       </H>
 
-      <H as="section" s="max-width:1280px;margin:84px auto 0;padding:0 28px 90px">
+      <H as="section" s="max-width:1280px;margin:84px auto 0;padding:0 28px">
         <H s="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap">
           <H as="h2" data-r="h2" s="font-family:'Playfair Display',serif;font-size:40px;margin:0;letter-spacing:-.025em;font-weight:500">Mẫu tương tự</H>
           <H as="button" type="button" onClick={goCat} s="background:none;border:0;cursor:pointer;color:#1F7F5C;font-weight:600;font-size:14.5px">Xem tất cả {box.category} →</H>
