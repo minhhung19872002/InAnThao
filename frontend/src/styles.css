@@ -48,6 +48,44 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#00A651!import
   [data-r="cta"]{width:100%;justify-content:center}
 }
 
+/* Mobile fixes not present in the design file: form inputs have an intrinsic min width (~190px),
+   so the 2-column name/phone row pushed the quote card past the viewport on phones. */
+[data-r="hero"] > *,[data-r="two"] > *,[data-r="quote"] > *,[data-r="grid4"] > *{min-width:0}
+[data-r="quote"] input,[data-r="quote"] select,[data-r="quote"] textarea{width:100%;min-width:0}
+@media (max-width:620px){
+  [data-r="form2"]{grid-template-columns:1fr!important}
+  [data-r="thumbs"]{gap:8px!important}
+  /* top bar: keep phone on one line, let the two contacts wrap under each other */
+  [data-r="topbar"] > span:last-child{flex-wrap:wrap;gap:4px 14px!important}
+  [data-r="topbar"] a{white-space:nowrap}
+  /* header: logo already carries the brand name; the text block does not fit next to the Menu button */
+  [data-r="brandtext"]{display:none!important}
+  /* hero stats: 3 in a row with tighter dividers */
+  [data-r="stats"]{gap:0!important;flex-wrap:nowrap!important}
+  [data-r="stats"] > div{padding-right:12px!important;margin-right:12px!important;min-width:0}
+  [data-r="stats"] > div:last-child{border-right:0!important;margin-right:0!important;padding-right:0!important}
+  [data-r="stats"] > div > div:first-child{font-size:26px!important}
+  /* catalogue: 2 compact columns instead of one very tall column */
+  [data-r="grid4"]{grid-template-columns:repeat(2,1fr)!important;gap:12px!important}
+  [data-r="card"] > div:last-child{padding:12px 12px 14px!important;gap:4px!important}
+  [data-r="card"] strong{font-size:14px!important}
+  [data-r="card"] [data-r="price"]{font-size:13px!important}
+  [data-r="card"] [data-r="tag"]{top:8px!important;left:8px!important;font-size:9.5px!important;padding:4px 8px!important}
+  [data-r="cta-mini"]{display:none}
+  /* category pills: one scrollable row */
+  [data-r="cats"]{flex-wrap:nowrap!important;overflow-x:auto;max-width:100%;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  [data-r="cats"]::-webkit-scrollbar{display:none}
+  [data-r="cats"] button{white-space:nowrap;flex:none}
+  /* section headings a bit tighter on phones */
+  [data-r="h1"]{font-size:36px!important}
+  [data-r="h2"]{font-size:28px!important}
+  /* product detail: price row + quantity row wrap nicely */
+  [data-r="qtyrow"],[data-r="pricerow"],[data-r="totalrow"]{flex-wrap:wrap}
+  [data-r="pricerow"] > span:first-child{white-space:nowrap;font-size:32px!important}
+  [data-r="totalrow"] > span{white-space:nowrap}
+  [data-r="foot"]{gap:28px!important}
+}
+
 /* image-slot equivalent: fill its container */
 img[data-slot]{width:100%;height:100%;object-fit:cover;display:block}
 html{scroll-behavior:smooth}

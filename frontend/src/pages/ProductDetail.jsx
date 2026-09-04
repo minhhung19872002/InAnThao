@@ -96,7 +96,7 @@ export default function ProductDetail() {
           <H as="h1" data-r="h1" s="font-family:'Playfair Display',serif;font-size:48px;line-height:1.05;letter-spacing:-.02em;margin:14px 0 0">{box.name}</H>
           <H as="p" s="font-size:17px;line-height:1.7;color:#4A5158;margin:16px 0 0;max-width:50ch;text-wrap:pretty">{box.description}</H>
 
-          <H s="display:flex;align-items:baseline;gap:12px;margin:26px 0 0;padding:20px 0;border-top:1px solid #E8E4D6;border-bottom:1px solid #E8E4D6">
+          <H data-r="pricerow" s="display:flex;align-items:baseline;gap:12px;margin:26px 0 0;padding:20px 0;border-top:1px solid #E8E4D6;border-bottom:1px solid #E8E4D6">
             <H as="span" s="font-family:'Playfair Display',serif;font-size:38px;color:#00A651;line-height:1">{box.priceLabel}</H>
             <H as="span" s="font-size:14px;color:#8C8A7E">/ sản phẩm · đã gồm gia công cơ bản</H>
           </H>
@@ -116,7 +116,7 @@ export default function ProductDetail() {
             </H>
             <H s="display:grid;gap:9px">
               <H as="strong" s="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8C8A7E">Số lượng</H>
-              <H s="display:flex;align-items:center;gap:14px">
+              <H data-r="qtyrow" s="display:flex;align-items:center;gap:14px">
                 <H s="display:flex;align-items:center;border:1px solid #DFDACA;border-radius:12px;background:#fff;overflow:hidden">
                   <H as="button" type="button" onClick={qtyDown} s="border:0;background:none;cursor:pointer;padding:12px 17px;font-size:17px;color:#4A5158" h="background:#F1F5EF">−</H>
                   <H as="span" s="min-width:78px;text-align:center;font-weight:600;font-size:15px">{num(dQty)}</H>
@@ -128,7 +128,7 @@ export default function ProductDetail() {
           </H>
 
           <H s="margin-top:26px;background:linear-gradient(135deg,#5A626B 0%,#3F4750 45%,#2E353C 100%);color:#FCFAED;border-radius:20px;padding:24px 26px;display:grid;gap:16px">
-            <H s="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+            <H data-r="totalrow" s="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
               <H as="span" s="font-size:14px;color:#ABADA4">Tạm tính {num(dQty)} × {vnd(unitFinal)}</H>
               <H as="strong" s="font-family:'Playfair Display',serif;font-size:34px;color:#8FE0AE;line-height:1">{vnd(dTotal)}</H>
             </H>

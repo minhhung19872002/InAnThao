@@ -6,7 +6,7 @@ export default function Why() {
   return (
     <H as="section" s="max-width:1240px;margin:0 auto;padding:84px 24px 0">
       <H data-r="two" s="display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start">
-        <H s="position:sticky;top:110px">
+        <H data-r="sticky" s="position:sticky;top:110px">
           <H as="span" s="display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4E8F35"><H as="span" s="width:26px;height:1px;background:#4E8F35" />Vì sao chọn An Thảo</H>
           <H as="h2" data-r="h2" s="font-family:'Playfair Display',serif;font-size:44px;margin:12px 0 18px;letter-spacing:-.025em;font-weight:500;line-height:1.08">Làm việc thẳng với xưởng, mọi thứ rõ ràng hơn</H>
           <H as="p" s="margin:0;font-size:16px;line-height:1.7;color:#4A5158;max-width:40ch;font-weight:300">Không qua đại lý nên giá tốt hơn, sửa file nhanh hơn và bạn luôn biết đơn của mình đang ở bước nào.</H>

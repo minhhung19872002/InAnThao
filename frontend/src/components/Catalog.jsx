@@ -26,7 +26,7 @@ export default function Catalog() {
           <H as="span" s="display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4E8F35"><H as="span" s="width:26px;height:1px;background:#4E8F35" />Danh mục sản phẩm</H>
           <H as="h2" data-r="h2" s="font-family:'Playfair Display',serif;font-size:44px;margin:12px 0 0;letter-spacing:-.025em;font-weight:500;line-height:1.08">Chọn loại ấn phẩm bạn cần</H>
         </div>
-        <H s="display:flex;gap:6px;flex-wrap:wrap;padding:5px;background:#ECF3EA;border-radius:999px">
+        <H data-r="cats" s="display:flex;gap:6px;flex-wrap:wrap;padding:5px;background:#ECF3EA;border-radius:999px">
           {cats.map((c) => {
             const active = c.slug === cat
             return (

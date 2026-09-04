@@ -43,7 +43,7 @@ export default function Header() {
       <H s="max-width:1240px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;gap:28px">
         <H as="a" href="#top" onClick={(e) => { e.preventDefault(); navigate('/'); window.scrollTo({ top: 0 }) }} s="display:flex;align-items:center;gap:12px;color:#3F4750">
           <H as="img" src={site.logoUrl} alt="Logo Xưởng In An Thảo" s="height:44px;width:auto;display:block" />
-          <H as="span" s="display:grid;line-height:1.15">
+          <H as="span" data-r="brandtext" s="display:grid;line-height:1.15">
             <H as="strong" s="font-family:'Playfair Display',serif;font-size:19px">{site.name}</H>
             <H as="span" s="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8C8A7E">{site.tagline}</H>
           </H>

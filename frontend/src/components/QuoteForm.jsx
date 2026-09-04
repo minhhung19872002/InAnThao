@@ -106,7 +106,7 @@ export default function QuoteForm() {
               {form.productSlug && (
                 <H s="font-size:13px;color:#4A5158;padding:10px 14px;background:#F2FAF6;border-radius:12px">Mẫu đã chọn: <strong style={{ color: '#1F7F5C' }}>{form.productName}</strong>{form.paper ? ` · ${form.paper}` : ''}{form.finish ? ` · ${form.finish}` : ''}</H>
               )}
-              <H s="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <H data-r="form2" s="display:grid;grid-template-columns:1fr 1fr;gap:14px">
                 <H as="label" s={labelS}>Họ tên
                   <H as="input" value={form.name} onChange={set('name')} placeholder="Nguyễn Văn A" s={inputS} />
                 </H>
