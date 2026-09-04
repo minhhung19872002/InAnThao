@@ -91,3 +91,9 @@ cd ~/apps/inanthao && ./deploy/deploy.sh
 
 `docker-compose.prod.yml` tắt mọi cổng publish; Caddy vào network `inanthao_inanthao` và trỏ tới `inanthao-web:80`.
 DNS: bản ghi A `inanthao.bluestar.com.vn` → IP máy chủ, Caddy tự xin chứng chỉ Let's Encrypt.
+
+## CI/CD
+
+`.github/workflows/deploy.yml`: mỗi push lên `main` → job **build** (dotnet build + npm build) → job **deploy** SSH vào VM chạy `deploy/deploy.sh` → smoke test qua Caddy.
+Secrets cần có trên GitHub: `SSH_HOST`, `SSH_USER`, `SSH_PRIVATE_KEY` (khoá ed25519 riêng cho deploy, public key nằm trong `~/.ssh/authorized_keys` của VM), tuỳ chọn `SSH_PORT`.
+Pull request chỉ chạy job build. Có thể chạy tay bằng "Run workflow".
