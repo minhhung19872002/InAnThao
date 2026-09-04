@@ -81,10 +81,10 @@ export const adminApi = {
 }
 
 export const STATUS = [
-  { value: 'new', label: 'Mới', color: '#00A651' },
+  { value: 'new', label: 'Mới', color: '#1F9E63' },
   { value: 'contacted', label: 'Đã liên hệ', color: '#2F80ED' },
-  { value: 'quoted', label: 'Đã báo giá', color: '#F7B746' },
-  { value: 'done', label: 'Hoàn tất', color: '#3F4750' },
+  { value: 'quoted', label: 'Đã báo giá', color: '#D6A84B' },
+  { value: 'done', label: 'Hoàn tất', color: '#0F2D22' },
   { value: 'cancelled', label: 'Huỷ', color: '#C0392B' },
 ]
-export const statusInfo = (v) => STATUS.find((s) => s.value === v) || { value: v, label: v, color: '#8C8A7E' }
+export const statusInfo = (v) => STATUS.find((s) => s.value === v) || { value: v, label: v, color: '#6B7F75' }

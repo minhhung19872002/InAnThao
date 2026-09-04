@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import Bento from '../components/Bento'
 import Catalog from '../components/Catalog'
 import Footer from '../components/Footer'
 import Hero from '../components/Hero'
 import QuoteForm from '../components/QuoteForm'
 import Steps from '../components/Steps'
 import Ticker from '../components/Ticker'
-import Why from '../components/Why'
 
-/** The `isHome` branch of the design: hero → ticker → catalogue → steps → why → quote → footer. */
+/** The `isHome` branch of the v2 design: hero → ribbon → services (bento) → catalogue → steps → quote → footer. */
 export default function Home() {
   const { hash, state } = useLocation()
 
@@ -26,9 +26,9 @@ export default function Home() {
     <>
       <Hero />
       <Ticker />
+      <Bento />
       <Catalog />
       <Steps />
-      <Why />
       <QuoteForm />
       <Footer />
     </>

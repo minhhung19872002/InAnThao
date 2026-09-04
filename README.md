@@ -1,6 +1,6 @@
 # In An Thảo – Website xưởng in
 
-Website giới thiệu và báo giá cho **Xưởng In An Thảo** (inanthao.com), dựng theo bản thiết kế Claude Design `In An Thao.dc.html`.
+Website giới thiệu và báo giá cho **Xưởng In An Thảo** (inanthao.com), dựng theo bản thiết kế Claude Design `In An Thao v2.dc.html`.
 
 | Layer    | Stack                                           |
 | -------- | ----------------------------------------------- |
@@ -44,7 +44,8 @@ backend/
 frontend/
   src/
     api/client.js        fetch wrapper + định dạng tiền
-    components/          TopBar, Header (dropdown nav), Hero, Ticker, Catalog, Steps, Why, QuoteForm, Footer, ProductCard
+    components/          TopBar, Header (dropdown nav), Hero (collage), Ticker (ribbon), Bento (4 nhóm dịch vụ), Catalog, Steps, QuoteForm, Footer, ProductCard
+    hooks/useDesignEffects.js  spotlight, card tilt, magnetic buttons, reveal-on-scroll (port từ script của design)
     pages/               Home, ProductDetail (/san-pham/:slug), Admin (/quan-tri)
     siteContext.jsx      nội dung tĩnh + danh mục dùng chung (có fallback khi API lỗi)
     styles.css           token màu/typography từ design + responsive

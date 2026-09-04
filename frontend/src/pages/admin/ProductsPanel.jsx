@@ -242,7 +242,7 @@ export default function ProductsPanel({ onUnauthorized }) {
                 </td>
                 <td onClick={(e) => e.stopPropagation()} className="nowrap">
                   <button type="button" className="link-btn" onClick={() => setEditing(p)}>Sửa</button>
-                  <span style={{ color: '#DFDACA', margin: '0 8px' }}>|</span>
+                  <span style={{ color: '#DDD5C4', margin: '0 8px' }}>|</span>
                   <button type="button" className="link-btn danger" onClick={() => remove(p)}>Xoá</button>
                 </td>
               </tr>

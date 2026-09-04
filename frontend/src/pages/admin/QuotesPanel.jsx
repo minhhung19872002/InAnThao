@@ -75,10 +75,10 @@ export default function QuotesPanel({ onUnauthorized }) {
         <div className="admin-stats">
           <StatCard label="Tổng yêu cầu" value={num(stats.total)} />
           <StatCard label="Hôm nay" value={num(stats.today)} />
-          <StatCard label="Mới" value={num(stats.new)} tone="#00A651" />
+          <StatCard label="Mới" value={num(stats.new)} tone="#1F9E63" />
           <StatCard label="Đã liên hệ" value={num(stats.contacted)} tone="#2F80ED" />
-          <StatCard label="Đã báo giá" value={num(stats.quoted)} tone="#F7B746" />
-          <StatCard label="Hoàn tất" value={num(stats.done)} tone="#3F4750" />
+          <StatCard label="Đã báo giá" value={num(stats.quoted)} tone="#D6A84B" />
+          <StatCard label="Hoàn tất" value={num(stats.done)} tone="#0F2D22" />
           <StatCard label="Ước tính (chưa huỷ)" value={vnd(stats.estimatedSum)} />
         </div>
       )}

@@ -31,7 +31,7 @@ public record EstimateDto(decimal UnitPrice, decimal Total, bool Discounted, dec
 
 public record SiteInfoDto(
     string Name, string Tagline, string Phone, string Email, string Hours, string LogoUrl,
-    IReadOnlyList<StatDto> Stats, IReadOnlyList<string> Ticker,
+    IReadOnlyList<StatDto> Stats, IReadOnlyList<string> Ticker, IReadOnlyList<string> Ticker2,
     IReadOnlyList<StepDto> Steps, IReadOnlyList<StepDto> Why, IReadOnlyList<string> Perks);
 
 public record StatDto(string N, string L);

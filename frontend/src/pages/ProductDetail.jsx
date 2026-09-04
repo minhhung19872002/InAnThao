@@ -6,7 +6,7 @@ import { useApi } from '../hooks/useApi'
 import { useSite } from '../siteContext'
 import H from '../ui/H'
 
-/** The `detail` branch of the design (breadcrumb, gallery, options, pricing box, specs, related). */
+/** The `detail` branch of the v2 design (breadcrumb, gallery, options, pricing box, specs, related). */
 export default function ProductDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
@@ -48,13 +48,13 @@ export default function ProductDetail() {
     },
   })
 
-  if (loading) return <H s="max-width:1240px;margin:0 auto;padding:60px 24px;color:#8C8A7E">Đang tải sản phẩm…</H>
+  if (loading) return <H s="max-width:1280px;margin:0 auto;padding:60px 28px;color:#6B7F75">Đang tải sản phẩm…</H>
   if (error || !box) {
     return (
-      <H s="max-width:720px;margin:80px auto;padding:0 24px;text-align:center">
-        <H as="h1" data-r="h2" s="font-family:'Playfair Display',serif;font-size:44px;margin:0 0 12px;letter-spacing:-.025em;font-weight:500">Không tìm thấy sản phẩm</H>
-        <H as="p" s="color:#4A5158;margin:0 0 24px">Mẫu này có thể đã ngừng kinh doanh hoặc đường dẫn không đúng.</H>
-        <H as="button" type="button" onClick={goHome} s="border:0;cursor:pointer;padding:14px 24px;border-radius:999px;background:#00A651;color:#fff;font-weight:600;font-size:15px">Về trang chủ</H>
+      <H s="max-width:720px;margin:80px auto;padding:0 28px;text-align:center">
+        <H as="h1" data-r="h2" s="font-family:'Playfair Display',serif;font-size:50px;margin:0 0 12px;letter-spacing:-.03em;font-weight:500;line-height:1.02">Không tìm thấy sản phẩm</H>
+        <H as="p" s="color:#4E5F57;margin:0 0 24px;font-weight:300">Mẫu này có thể đã ngừng kinh doanh hoặc đường dẫn không đúng.</H>
+        <H as="button" type="button" onClick={goHome} s="border:0;cursor:pointer;padding:15px 26px;border-radius:999px;background:#1F9E63;color:#fff;font-weight:700;font-size:15px;transition:all .2s ease" h="background:#0F2D22">Về trang chủ</H>
       </H>
     )
   }
@@ -65,26 +65,24 @@ export default function ProductDetail() {
     { key: 'Gia công đã chọn', value: finishes[finish]?.label || '—' },
   ]
   const tel = site.phone.replace(/\s/g, '')
-  const optS = (on) => `cursor:pointer;padding:11px 17px;border-radius:12px;border:1px solid ${on ? '#00A651' : '#DFDACA'};background:${on ? '#F2FAF6' : '#fff'};color:${on ? '#1F7F5C' : '#4A5158'};font-size:14px;font-weight:500;transition:all .18s ease`
+  const optS = (on) => `cursor:pointer;padding:12px 18px;border-radius:999px;border:1.5px solid ${on ? '#0F2D22' : '#DDD5C4'};background:${on ? '#0F2D22' : '#fff'};color:${on ? '#F4EFE4' : '#0F2D22'};font-size:14px;font-weight:600;transition:all .18s ease`
 
   return (
-    <H s="animation:floatUp .26s ease both">
-      <H s="max-width:1240px;margin:0 auto;padding:26px 24px 0;display:flex;align-items:center;gap:10px;font-size:13.5px;color:#8C8A7E">
-        <H as="button" type="button" onClick={goHome} s="background:none;border:0;padding:0;cursor:pointer;color:#00A651;font-weight:600">Trang chủ</H>
-        <span>/</span>
-        <H as="button" type="button" onClick={goCat} s="background:none;border:0;padding:0;cursor:pointer;color:#00A651;font-weight:600">{box.category}</H>
-        <span>/</span>
-        <H as="span" s="color:#4A5158">{box.name}</H>
+    <H s="animation:rise .3s ease both">
+      <H s="max-width:1280px;margin:0 auto;padding:26px 28px 0;display:flex;align-items:center;gap:10px;font-size:13.5px;color:#6B7F75">
+        <H as="button" type="button" onClick={goHome} s="background:none;border:0;padding:0;cursor:pointer;color:#1F7F5C;font-weight:600">Trang chủ</H><span>/</span>
+        <H as="button" type="button" onClick={goCat} s="background:none;border:0;padding:0;cursor:pointer;color:#1F7F5C;font-weight:600">{box.category}</H><span>/</span>
+        <H as="span" s="color:#0F2D22">{box.name}</H>
       </H>
 
-      <H as="section" data-r="two" s="max-width:1240px;margin:0 auto;padding:26px 24px 0;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
+      <H as="section" data-r="two" s="max-width:1280px;margin:0 auto;padding:26px 28px 0;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
         <H data-r="sticky" s="display:grid;gap:14px;position:sticky;top:104px">
-          <H data-r="media" s="position:relative;border-radius:24px;overflow:hidden;background:#EFEADC;aspect-ratio:4/5;box-shadow:0 40px 80px -46px rgba(63,71,80,.5)">
+          <H data-r="media" s="position:relative;border-radius:28px;overflow:hidden;background:#E9E2D3;aspect-ratio:4/5;box-shadow:0 50px 90px -46px rgba(15,45,34,.55)">
             <img data-slot={`detail-main-${box.slug}`} src={active} alt={box.name} />
           </H>
           <H data-r="thumbs" s="display:flex;gap:12px">
             {srcs.map((s, i) => (
-              <H key={`${s}-${i}`} as="button" type="button" onClick={() => setMainImg(s)} s={`flex:1;padding:0;border:2px solid ${s === active ? '#00A651' : '#E8E4D6'};border-radius:14px;overflow:hidden;background:#EFEADC;aspect-ratio:1/1;cursor:pointer;transition:border-color .2s ease`}>
+              <H key={`${s}-${i}`} as="button" type="button" onClick={() => setMainImg(s)} s={`flex:1;padding:0;border:2px solid ${s === active ? '#0F2D22' : 'transparent'};border-radius:16px;overflow:hidden;background:#E9E2D3;aspect-ratio:1/1;cursor:pointer;transition:border-color .2s ease`}>
                 <img data-slot={`thumb-${i}-${box.slug}`} src={s} alt="" loading="lazy" />
               </H>
             ))}
@@ -92,72 +90,71 @@ export default function ProductDetail() {
         </H>
 
         <div>
-          <H as="span" s="display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#4E8F35"><H as="span" s="width:26px;height:1px;background:#4E8F35" />{box.category}</H>
-          <H as="h1" data-r="h1" s="font-family:'Playfair Display',serif;font-size:48px;line-height:1.05;letter-spacing:-.02em;margin:14px 0 0">{box.name}</H>
-          <H as="p" s="font-size:17px;line-height:1.7;color:#4A5158;margin:16px 0 0;max-width:50ch;text-wrap:pretty">{box.description}</H>
+          <H as="span" s="display:inline-flex;align-items:center;gap:10px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:#1F7F5C;font-weight:600"><H as="span" s="width:28px;height:2px;background:#3DDC84" />{box.category}</H>
+          <H as="h1" data-r="h1" s="font-family:'Playfair Display',serif;font-size:54px;line-height:1.02;letter-spacing:-.03em;margin:14px 0 0;font-weight:500">{box.name}</H>
+          <H as="p" s="font-size:17px;line-height:1.7;color:#4E5F57;margin:18px 0 0;max-width:50ch;font-weight:300">{box.description}</H>
 
-          <H data-r="pricerow" s="display:flex;align-items:baseline;gap:12px;margin:26px 0 0;padding:20px 0;border-top:1px solid #E8E4D6;border-bottom:1px solid #E8E4D6">
-            <H as="span" s="font-family:'Playfair Display',serif;font-size:38px;color:#00A651;line-height:1">{box.priceLabel}</H>
-            <H as="span" s="font-size:14px;color:#8C8A7E">/ sản phẩm · đã gồm gia công cơ bản</H>
+          <H data-r="pricerow" s="display:flex;align-items:baseline;gap:12px;margin:28px 0 0;padding:22px 0;border-top:1px solid rgba(15,45,34,.12);border-bottom:1px solid rgba(15,45,34,.12)">
+            <H as="span" s="font-family:'Playfair Display',serif;font-size:42px;color:#0F2D22;line-height:1;letter-spacing:-.02em">{box.priceLabel}</H>
+            <H as="span" s="font-size:14px;color:#6B7F75">/ sản phẩm · đã gồm gia công cơ bản</H>
           </H>
 
-          <H s="display:grid;gap:20px;margin-top:26px">
-            <H s="display:grid;gap:9px">
-              <H as="strong" s="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8C8A7E">Chất liệu giấy</H>
+          <H s="display:grid;gap:22px;margin-top:28px">
+            <H s="display:grid;gap:10px">
+              <H as="strong" s="font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#6B7F75">Chất liệu giấy</H>
               <H s="display:flex;gap:9px;flex-wrap:wrap">
                 {papers.map((o, i) => <H key={o.id} as="button" type="button" onClick={() => setPaper(i)} s={optS(i === paper)}>{o.label}</H>)}
               </H>
             </H>
-            <H s="display:grid;gap:9px">
-              <H as="strong" s="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8C8A7E">Gia công thêm</H>
+            <H s="display:grid;gap:10px">
+              <H as="strong" s="font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#6B7F75">Gia công thêm</H>
               <H s="display:flex;gap:9px;flex-wrap:wrap">
                 {finishes.map((o, i) => <H key={o.id} as="button" type="button" onClick={() => setFinish(i)} s={optS(i === finish)}>{o.label}</H>)}
               </H>
             </H>
-            <H s="display:grid;gap:9px">
-              <H as="strong" s="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8C8A7E">Số lượng</H>
-              <H data-r="qtyrow" s="display:flex;align-items:center;gap:14px">
-                <H s="display:flex;align-items:center;border:1px solid #DFDACA;border-radius:12px;background:#fff;overflow:hidden">
-                  <H as="button" type="button" onClick={qtyDown} s="border:0;background:none;cursor:pointer;padding:12px 17px;font-size:17px;color:#4A5158" h="background:#F1F5EF">−</H>
-                  <H as="span" s="min-width:78px;text-align:center;font-weight:600;font-size:15px">{num(dQty)}</H>
-                  <H as="button" type="button" onClick={qtyUp} s="border:0;background:none;cursor:pointer;padding:12px 17px;font-size:17px;color:#4A5158" h="background:#F1F5EF">+</H>
+            <H s="display:grid;gap:10px">
+              <H as="strong" s="font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#6B7F75">Số lượng</H>
+              <H data-r="qtyrow" s="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+                <H s="display:flex;align-items:center;border:1.5px solid #DDD5C4;border-radius:999px;background:#fff;overflow:hidden">
+                  <H as="button" type="button" onClick={qtyDown} s="border:0;background:none;cursor:pointer;padding:12px 18px;font-size:18px;color:#0F2D22" h="background:#F4EFE4">−</H>
+                  <H as="span" s="min-width:80px;text-align:center;font-weight:700;font-size:15px">{num(dQty)}</H>
+                  <H as="button" type="button" onClick={qtyUp} s="border:0;background:none;cursor:pointer;padding:12px 18px;font-size:18px;color:#0F2D22" h="background:#F4EFE4">+</H>
                 </H>
-                <H as="span" s="font-size:13.5px;color:#8C8A7E">{dQty >= 500 ? 'Đã áp dụng giảm 15% cho đơn lớn' : 'Từ 500 sản phẩm được giảm 15%'}</H>
+                <H as="span" s="font-size:13.5px;color:#6B7F75">{dQty >= 500 ? 'Đã áp dụng giảm 15% cho đơn lớn' : 'Từ 500 sản phẩm được giảm 15%'}</H>
               </H>
             </H>
           </H>
 
-          <H s="margin-top:26px;background:linear-gradient(135deg,#5A626B 0%,#3F4750 45%,#2E353C 100%);color:#FCFAED;border-radius:20px;padding:24px 26px;display:grid;gap:16px">
-            <H data-r="totalrow" s="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
-              <H as="span" s="font-size:14px;color:#ABADA4">Tạm tính {num(dQty)} × {vnd(unitFinal)}</H>
-              <H as="strong" s="font-family:'Playfair Display',serif;font-size:34px;color:#8FE0AE;line-height:1">{vnd(dTotal)}</H>
+          <H s="margin-top:28px;background:#E7F5EA;color:#0F2D22;border-radius:24px;padding:26px 28px;display:grid;gap:18px;border:1px solid rgba(15,45,34,.08)">
+            <H data-r="totalrow" s="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap">
+              <H as="span" s="font-size:14px;color:#4E5F57">Tạm tính {num(dQty)} × {vnd(unitFinal)}</H>
+              <H as="strong" s="font-family:'Playfair Display',serif;font-size:38px;color:#1F9E63;line-height:1;letter-spacing:-.02em">{vnd(dTotal)}</H>
             </H>
             <H s="display:flex;gap:11px;flex-wrap:wrap">
-              <H as="button" type="button" onClick={orderNow} s="border:0;cursor:pointer;padding:14px 24px;border-radius:999px;background:#00A651;color:#fff;font-weight:600;font-size:15px" h="background:#22BC6B">Yêu cầu báo giá chính xác</H>
-              <H as="a" href={`tel:${tel}`} s="padding:14px 24px;border-radius:999px;border:1px solid rgba(248,247,243,.35);color:#FCFAED;font-weight:600;font-size:15px" h="background:#FCFAED;color:#3F4750">Gọi {site.phone}</H>
+              <H as="button" type="button" onClick={orderNow} s="border:0;cursor:pointer;padding:15px 26px;border-radius:999px;background:#1F9E63;color:#fff;font-weight:700;font-size:15px;transition:all .2s ease" h="background:#0F2D22">Yêu cầu báo giá chính xác</H>
+              <H as="a" href={`tel:${tel}`} s="padding:15px 26px;border-radius:999px;border:1.5px solid rgba(15,45,34,.25);color:#0F2D22;font-weight:600;font-size:15px;transition:all .2s ease;background:#fff" h="background:#0F2D22;color:#fff">Gọi {site.phone}</H>
             </H>
           </H>
 
-          <H s="margin-top:30px;border:1px solid #E8E4D6;border-radius:18px;overflow:hidden;background:#fff">
+          <H s="margin-top:30px;border:1px solid rgba(15,45,34,.1);border-radius:20px;overflow:hidden;background:#fff">
             {specs.map((s) => (
-              <H key={s.key} s="display:grid;grid-template-columns:38% 1fr;gap:16px;padding:14px 20px;border-bottom:1px solid #F1EEE2;font-size:14.5px">
-                <H as="span" s="color:#8C8A7E">{s.key}</H>
-                <H as="span" s="color:#383E44">{s.value}</H>
+              <H key={s.key} s="display:grid;grid-template-columns:38% 1fr;gap:16px;padding:15px 22px;border-bottom:1px solid rgba(15,45,34,.06);font-size:14.5px">
+                <H as="span" s="color:#6B7F75">{s.key}</H>
+                <H as="span" s="color:#0F2D22;font-weight:500">{s.value}</H>
               </H>
             ))}
           </H>
         </div>
       </H>
 
-      <H as="section" s="max-width:1240px;margin:74px auto 0;padding:0 24px">
+      <H as="section" s="max-width:1280px;margin:84px auto 0;padding:0 28px 90px">
         <H s="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap">
-          <H as="h2" data-r="h2" s="font-family:'Playfair Display',serif;font-size:34px;margin:0;letter-spacing:-.015em">Mẫu tương tự</H>
-          <H as="button" type="button" onClick={goCat} s="background:none;border:0;cursor:pointer;color:#00A651;font-weight:600;font-size:14.5px">Xem tất cả {box.category} →</H>
+          <H as="h2" data-r="h2" s="font-family:'Playfair Display',serif;font-size:40px;margin:0;letter-spacing:-.025em;font-weight:500">Mẫu tương tự</H>
+          <H as="button" type="button" onClick={goCat} s="background:none;border:0;cursor:pointer;color:#1F7F5C;font-weight:600;font-size:14.5px">Xem tất cả {box.category} →</H>
         </H>
-        <H data-r="grid4" s="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:26px">
+        <H data-r="grid4" s="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:28px">
           {(data.related || []).map((p) => <ProductCard key={p.slug} product={p} variant="related" />)}
         </H>
-        <H s="height:80px" />
       </H>
     </H>
   )

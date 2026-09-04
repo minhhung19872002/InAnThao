@@ -8,7 +8,7 @@ const scrollToId = (id, offset = 60) => {
   if (el) window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' })
 }
 
-/** Header ported 1:1 from the design (nav dropdowns, mobile toggle). */
+/** Header ported 1:1 from the v2 design (pill nav, dropdowns, mobile toggle). */
 export default function Header() {
   const { site, categories } = useSite()
   const navigate = useNavigate()
@@ -39,13 +39,13 @@ export default function Header() {
   }
 
   return (
-    <H as="header" s="position:sticky;top:0;z-index:40;background:rgba(252,250,237,.92);backdrop-filter:blur(14px);border-bottom:1px solid #E8E4D6">
-      <H s="max-width:1240px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;gap:28px">
-        <H as="a" href="#top" onClick={(e) => { e.preventDefault(); navigate('/'); window.scrollTo({ top: 0 }) }} s="display:flex;align-items:center;gap:12px;color:#3F4750">
-          <H as="img" src={site.logoUrl} alt="Logo Xưởng In An Thảo" s="height:44px;width:auto;display:block" />
-          <H as="span" data-r="brandtext" s="display:grid;line-height:1.15">
-            <H as="strong" s="font-family:'Playfair Display',serif;font-size:19px">{site.name}</H>
-            <H as="span" s="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8C8A7E">{site.tagline}</H>
+    <H as="header" s="position:sticky;top:0;z-index:40;background:rgba(251,248,242,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(15,45,34,.08)">
+      <H s="max-width:1280px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:28px">
+        <H as="a" href="#top" onClick={(e) => { e.preventDefault(); navigate('/'); window.scrollTo({ top: 0 }) }} s="display:flex;align-items:center;gap:12px;color:#0F2D22">
+          <H as="img" src={site.logoUrl} alt="Logo An Thảo" s="height:42px;width:auto;display:block" />
+          <H as="span" data-r="brandtext" s="display:grid;line-height:1.1">
+            <H as="strong" s="font-family:'Playfair Display',serif;font-size:19px;letter-spacing:-.01em">An Thảo</H>
+            <H as="span" s="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#6B7F75">{site.tagline}</H>
           </H>
         </H>
 
@@ -61,31 +61,26 @@ export default function Header() {
                   as="button"
                   type="button"
                   onClick={toggle}
-                  s={`position:relative;background:${open ? '#ECF3EA' : 'transparent'};color:${open ? '#1F7F5C' : '#3F4750'};border:0;padding:10px 13px;border-radius:10px;font-size:14.5px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .2s ease,color .2s ease`}
-                  h="background:#ECF3EA"
+                  s={`position:relative;background:${open ? 'rgba(15,45,34,.08)' : 'transparent'};color:#0F2D22;border:0;padding:10px 14px;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .2s ease,color .2s ease`}
+                  h="background:rgba(15,45,34,.06)"
                 >
                   {n.label}
-                  <H as="span" s={`font-size:9px;display:inline-block;transition:transform .28s cubic-bezier(.2,.8,.2,1);transform:${open ? 'rotate(180deg)' : 'none'};color:${open ? '#00A651' : '#8C8A7E'}`}>{n.kids.length ? '▾' : ''}</H>
-                  <H as="span" s={`position:absolute;left:13px;right:13px;bottom:4px;height:2px;border-radius:2px;background:#00A651;transform-origin:left;transform:${open ? 'scaleX(1)' : 'scaleX(0)'};transition:transform .28s cubic-bezier(.2,.8,.2,1)`} />
+                  <H as="span" s={`font-size:9px;display:inline-block;transition:transform .28s cubic-bezier(.2,.8,.2,1);transform:${open ? 'rotate(180deg)' : 'none'};color:${open ? '#1F7F5C' : '#6B7F75'}`}>{n.kids.length ? '▾' : ''}</H>
                 </H>
                 {open && (
-                  <H s="position:absolute;top:calc(100% + 10px);left:0;min-width:300px;padding-top:0;z-index:5;animation:ddIn .22s cubic-bezier(.2,.8,.2,1) both;transform-origin:top left">
-                    <H as="span" s="position:absolute;top:-6px;left:26px;width:12px;height:12px;background:#fff;border-left:1px solid #E8E4D6;border-top:1px solid #E8E4D6;transform:rotate(45deg);border-radius:2px" />
-                    <H s="background:#fff;border:1px solid #E8E4D6;border-radius:16px;padding:10px;box-shadow:0 30px 60px -24px rgba(63,71,80,.32),0 2px 8px -2px rgba(63,71,80,.08);overflow:hidden">
-                      <H s="padding:6px 12px 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8C8A7E;border-bottom:1px solid #F1EEE2;margin-bottom:6px">{n.label}</H>
+                  <H s="position:absolute;top:calc(100% + 12px);left:0;min-width:300px;z-index:5;animation:ddIn .22s cubic-bezier(.2,.8,.2,1) both;transform-origin:top left">
+                    <H s="background:#fff;color:#0F2D22;border-radius:18px;padding:10px;box-shadow:0 34px 70px -28px rgba(15,45,34,.35);border:1px solid rgba(15,45,34,.08)">
+                      <H s="padding:8px 12px 10px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#6B7F75;border-bottom:1px solid rgba(15,45,34,.08);margin-bottom:6px">{n.label}</H>
                       {n.kids.map((k, j) => (
                         <H
                           key={k}
                           as="a"
                           href="#danh-muc"
                           onClick={(e) => { e.preventDefault(); pickCat(n.slug) }}
-                          s={`display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:10px;font-size:14px;color:#383E44;animation:ddItem .3s cubic-bezier(.2,.8,.2,1) both;animation-delay:${j * 45}ms;transition:background .18s ease,color .18s ease,padding-left .18s ease`}
-                          h="background:#F2FAF6;color:#00A651;padding-left:16px"
+                          s={`display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;font-size:14px;color:#0F2D22;animation:ddItem .3s cubic-bezier(.2,.8,.2,1) both;animation-delay:${j * 45}ms;transition:background .18s ease,padding-left .18s ease`}
+                          h="background:#E7F5EA;color:#1F7F5C;padding-left:16px"
                         >
-                          <H as="span" s="display:flex;align-items:center;gap:10px">
-                            <H as="span" s="width:6px;height:6px;border-radius:50%;background:#00A651;opacity:.55" />
-                            {k}
-                          </H>
+                          <H as="span" s="width:6px;height:6px;border-radius:50%;background:#3DDC84" />{k}
                         </H>
                       ))}
                     </H>
@@ -94,25 +89,18 @@ export default function Header() {
               </H>
             )
           })}
-          <H as="a" href="#bao-gia" onClick={goQuote} s="margin-left:10px;padding:11px 20px;border-radius:999px;background:#00A651;color:#fff;font-size:14.5px;font-weight:600" h="background:#1F7F5C;color:#fff">Nhận báo giá</H>
+          <H as="a" href="#bao-gia" onClick={goQuote} s="margin-left:12px;padding:12px 22px;border-radius:999px;background:#1F9E63;color:#fff;font-size:14px;font-weight:600;transition:all .2s ease;box-shadow:0 12px 24px -12px rgba(31,158,99,.7)" h="background:#0F2D22;color:#fff">Nhận báo giá</H>
         </H>
 
-        <H as="button" type="button" data-r="navtoggle" onClick={() => setMobileNav((v) => !v)} s="margin-left:auto;align-items:center;gap:9px;background:none;border:1px solid #DFDACA;border-radius:12px;padding:10px 15px;font-size:14px;font-weight:600;cursor:pointer">
-          <H as="span" s="display:grid;gap:3.5px">
-            <H as="span" s="width:16px;height:2px;background:#3F4750;display:block" />
-            <H as="span" s="width:16px;height:2px;background:#3F4750;display:block" />
-            <H as="span" s="width:16px;height:2px;background:#3F4750;display:block" />
-          </H>
-          Menu
-        </H>
+        <H as="button" type="button" data-r="navtoggle" onClick={() => setMobileNav((v) => !v)} s="margin-left:auto;align-items:center;gap:9px;background:#1F9E63;color:#fff;border:0;border-radius:999px;padding:11px 16px;font-size:14px;font-weight:600;cursor:pointer">Menu</H>
       </H>
 
       {mobileNav && (
-        <H s="border-top:1px solid #E8E4D6;background:#fff;padding:12px 18px 18px;display:grid;gap:4px;animation:floatUp .2s ease both">
+        <H s="border-top:1px solid rgba(15,45,34,.08);background:#F4EFE4;padding:12px 18px 18px;display:grid;gap:2px;animation:ddIn .2s ease both">
           {NAV.map((m) => (
-            <H key={m.label} as="button" type="button" onClick={() => pickCat(m.slug)} s="text-align:left;background:none;border:0;cursor:pointer;padding:12px 10px;border-radius:10px;font-size:15.5px;font-weight:500;border-bottom:1px solid #F3F0E5" h="background:#F2FAF6;color:#00A651">{m.label}</H>
+            <H key={m.label} as="button" type="button" onClick={() => pickCat(m.slug)} s="text-align:left;background:none;border:0;cursor:pointer;padding:13px 10px;border-radius:12px;font-size:16px;font-weight:500;border-bottom:1px solid rgba(15,45,34,.06)" h="background:rgba(15,45,34,.05)">{m.label}</H>
           ))}
-          <H as="a" href="#bao-gia" onClick={goQuote} s="margin-top:10px;text-align:center;padding:14px;border-radius:999px;background:#00A651;color:#fff;font-weight:600;font-size:15px" h="background:#1F7F5C;color:#fff">Nhận báo giá</H>
+          <H as="a" href="#bao-gia" onClick={goQuote} s="margin-top:10px;text-align:center;padding:14px;border-radius:999px;background:#0F2D22;color:#F4EFE4;font-weight:600">Nhận báo giá</H>
         </H>
       )}
     </H>

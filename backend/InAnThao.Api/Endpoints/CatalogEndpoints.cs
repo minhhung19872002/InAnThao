@@ -106,7 +106,7 @@ public static class SiteContent
 {
     public static readonly SiteInfoDto Info = new(
         Name: "Xưởng In An Thảo",
-        Tagline: "In ấn · TP. Hồ Chí Minh",
+        Tagline: "Printing Studio",
         Phone: "0932 733 764",
         Email: "hien.anthao@gmail.com",
         Hours: "8:00 – 18:00, Thứ 2 – Thứ 7",
@@ -118,6 +118,7 @@ public static class SiteContent
             new("48h", "in nhanh khi cần"),
         ],
         Ticker: ["In offset", "Ép kim · Ép nhũ", "Cấn bế theo hình", "Giấy mỹ thuật", "Cán bóng / mờ", "Thiết kế miễn phí", "Giao toàn quốc", "Xuất hoá đơn VAT"],
+        Ticker2: ["Thiệp cưới", "Tem nhãn", "Hộp giấy", "Túi giấy", "Name card", "Menu", "Hoá đơn", "Standee", "Catalogue", "Voucher"],
         Steps:
         [
             new("01", "Chọn mẫu", "Xem mẫu sẵn hoặc gửi ý tưởng của bạn cho xưởng."),

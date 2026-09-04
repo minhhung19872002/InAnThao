@@ -5,7 +5,7 @@ import { useApi } from './hooks/useApi'
 /** Static copy mirrored from the design; used until /api/site responds (or if the API is down). */
 export const SITE_FALLBACK = {
   name: 'Xưởng In An Thảo',
-  tagline: 'In ấn · TP. Hồ Chí Minh',
+  tagline: 'Printing Studio',
   phone: '0932 733 764',
   email: 'hien.anthao@gmail.com',
   hours: '8:00 – 18:00, Thứ 2 – Thứ 7',
@@ -16,6 +16,7 @@ export const SITE_FALLBACK = {
     { n: '48h', l: 'in nhanh khi cần' },
   ],
   ticker: ['In offset', 'Ép kim · Ép nhũ', 'Cấn bế theo hình', 'Giấy mỹ thuật', 'Cán bóng / mờ', 'Thiết kế miễn phí', 'Giao toàn quốc', 'Xuất hoá đơn VAT'],
+  ticker2: ['Thiệp cưới', 'Tem nhãn', 'Hộp giấy', 'Túi giấy', 'Name card', 'Menu', 'Hoá đơn', 'Standee', 'Catalogue', 'Voucher'],
   steps: [
     { n: '01', t: 'Chọn mẫu', d: 'Xem mẫu sẵn hoặc gửi ý tưởng của bạn cho xưởng.' },
     { n: '02', t: 'Thiết kế miễn phí', d: 'Dàn trang nội dung, gửi bản xem trước để bạn duyệt.' },
