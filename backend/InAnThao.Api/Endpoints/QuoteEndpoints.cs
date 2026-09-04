@@ -57,13 +57,6 @@ public static class QuoteEndpoints
                 new QuoteResponseDto(entity.Id, entity.EstimatedTotal, entity.Status, entity.CreatedAt));
         });
 
-        g.MapGet("/", async (AppDbContext db, CancellationToken ct) =>
-            await db.QuoteRequests.AsNoTracking().OrderByDescending(q => q.CreatedAt).Take(200).ToListAsync(ct));
-
-        g.MapGet("/{id:int}", async (int id, AppDbContext db, CancellationToken ct) =>
-            await db.QuoteRequests.AsNoTracking().FirstOrDefaultAsync(q => q.Id == id, ct) is { } q
-                ? Results.Ok(q) : Results.NotFound());
-
         return app;
     }
 }

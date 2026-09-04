@@ -43,5 +43,6 @@ app.MapOpenApi();
 app.MapGet("/health", () => Results.Ok(new { status = "ok", time = DateTime.UtcNow }));
 app.MapCatalog();
 app.MapQuotes();
+app.MapAdmin();
 
 app.Run();

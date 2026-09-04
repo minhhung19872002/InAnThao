@@ -22,6 +22,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Production}
       ConnectionStrings__Default: "Host=db;Port=5432;Database=${POSTGRES_DB:-inanthao};Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD:-postgres}"
+      Admin__Password: ${ADMIN_PASSWORD:-admin123}
       Cors__Origins__0: "http://localhost:${WEB_PORT:-8080}"
       Cors__Origins__1: "http://localhost:5173"
     ports:

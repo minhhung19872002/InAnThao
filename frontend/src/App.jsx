@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import TopBar from './components/TopBar'
+import Admin from './pages/Admin'
 import Home from './pages/Home'
 import ProductDetail from './pages/ProductDetail'
 import { SiteProvider } from './siteContext'
@@ -16,6 +17,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/san-pham/:slug" element={<ProductDetail />} />
+            <Route path="/quan-tri" element={<Admin />} />
             <Route path="*" element={<Home />} />
           </Routes>
           <Footer />

@@ -38,14 +38,14 @@ cd frontend && npm install && npm run dev    # http://localhost:5173
 backend/
   InAnThao.Api/
     Data/         Entities, AppDbContext, DbSeeder, Migrations
-    Endpoints/    CatalogEndpoints (site, categories, products, estimate), QuoteEndpoints
+    Endpoints/    CatalogEndpoints, QuoteEndpoints, AdminEndpoints (bảo vệ bằng X-Admin-Key)
     Services/     PricingService (hệ số giấy × gia công, giảm 15% từ 500 sp)
     Contracts/    DTOs
 frontend/
   src/
     api/client.js        fetch wrapper + định dạng tiền
     components/          TopBar, Header (dropdown nav), Hero, Ticker, Catalog, Steps, Why, QuoteForm, Footer, ProductCard
-    pages/               Home, ProductDetail (/san-pham/:slug)
+    pages/               Home, ProductDetail (/san-pham/:slug), Admin (/quan-tri)
     siteContext.jsx      nội dung tĩnh + danh mục dùng chung (có fallback khi API lỗi)
     styles.css           token màu/typography từ design + responsive
 docker-compose.yml
@@ -61,4 +61,13 @@ docker-compose.yml
 | GET    | `/api/products/{slug}`                            | Chi tiết + gallery + mẫu tương tự       |
 | GET    | `/api/estimate?category=&product=&qty=&paperId=&finishId=` | Ước tính giá                   |
 | POST   | `/api/quotes`                                     | Gửi yêu cầu báo giá                     |
-| GET    | `/api/quotes`                                     | Danh sách yêu cầu (dành cho quản trị)   |
+| GET    | `/api/admin/stats`                                | Thống kê yêu cầu (cần `X-Admin-Key`)    |
+| GET    | `/api/admin/quotes?status=&search=&page=&pageSize=` | Danh sách yêu cầu, lọc + phân trang   |
+| PATCH  | `/api/admin/quotes/{id}/status`                   | Đổi trạng thái: new/contacted/quoted/done/cancelled |
+| DELETE | `/api/admin/quotes/{id}`                          | Xoá yêu cầu                             |
+
+## Trang quản trị
+
+- Đường dẫn: `/quan-tri` (không có link công khai trên site).
+- Đăng nhập bằng mật khẩu cấu hình ở `Admin:Password` (`appsettings.json`) hoặc biến môi trường `ADMIN_PASSWORD` trong `.env` khi chạy Docker. Mặc định `admin123` – **đổi trước khi đưa lên production**.
+- Chức năng: thống kê theo trạng thái, lọc, tìm kiếm (tên/SĐT/sản phẩm/ghi chú), xem chi tiết (giấy, gia công, ghi chú, mở Zalo), đổi trạng thái, xoá.
