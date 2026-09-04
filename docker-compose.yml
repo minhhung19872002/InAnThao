@@ -23,8 +23,11 @@ services:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Production}
       ConnectionStrings__Default: "Host=db;Port=5432;Database=${POSTGRES_DB:-inanthao};Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD:-postgres}"
       Admin__Password: ${ADMIN_PASSWORD:-admin123}
+      Uploads__Path: /app/uploads
       Cors__Origins__0: "http://localhost:${WEB_PORT:-8080}"
       Cors__Origins__1: "http://localhost:5173"
+    volumes:
+      - uploads:/app/uploads
     ports:
       - "${API_PORT:-5000}:8080"
     depends_on:
@@ -43,3 +46,4 @@ services:
 
 volumes:
   pgdata:
+  uploads:

@@ -141,3 +141,29 @@ html{scroll-behavior:smooth}
 .admin-login{min-height:70vh;display:grid;place-items:center;padding:40px 24px}
 .admin-login__card{width:100%;max-width:400px;background:#fff;border:1px solid #EAE5D7;border-radius:22px;padding:32px;display:grid;gap:14px;box-shadow:0 36px 64px -34px rgba(63,71,80,.3)}
 .qform__submit{padding:15px;font-size:15px;width:100%}
+
+/* Admin: products */
+.admin-form{margin-top:16px;background:#fff;border:1px solid #BFE3CF;border-radius:18px;padding:22px;display:grid;gap:16px;box-shadow:0 28px 50px -30px rgba(63,71,80,.25)}
+.admin-form__head{display:flex;justify-content:space-between;align-items:center;font-size:16px}
+.admin-form__grid{display:grid;grid-template-columns:260px 1fr;gap:22px}
+.admin-form__media{display:grid;gap:10px;align-content:start}
+.admin-form__preview{aspect-ratio:4/5;border-radius:14px;background:#EFEADC;overflow:hidden;display:grid;place-items:center;color:#8C8A7E;font-size:13px;border:1px solid #EAE5D7}
+.admin-form__preview img{width:100%;height:100%;object-fit:cover;display:block}
+.admin-form__fields{display:grid;gap:12px;align-content:start}
+.admin-form__row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.admin-form__actions{display:flex;gap:10px;align-items:center}
+.admin-check{display:flex!important;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid #D7DDD6;border-radius:11px;background:#fff;align-self:end}
+.admin-check input{width:18px;height:18px;accent-color:#00A651}
+.admin-thumb{width:56px;height:70px;border-radius:10px;background:#EFEADC;overflow:hidden}
+.admin-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.admin-table tr.is-off td{opacity:.55}
+.admin-toggle{width:42px;height:24px;border-radius:999px;border:0;background:#DFDACA;position:relative;cursor:pointer;padding:0;transition:background .2s ease}
+.admin-toggle span{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s ease;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.admin-toggle.is-on{background:#00A651}
+.admin-toggle.is-on span{transform:translateX(18px)}
+@media (max-width:800px){
+  .admin-form__grid,.admin-form__row{grid-template-columns:1fr}
+  .admin-form__media{grid-template-columns:120px 1fr;align-items:start}
+  .admin-form__preview{aspect-ratio:4/5}
+  .admin__actions{flex-wrap:wrap}
+}

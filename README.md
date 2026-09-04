@@ -65,12 +65,18 @@ docker-compose.yml
 | GET    | `/api/admin/quotes?status=&search=&page=&pageSize=` | Danh sách yêu cầu, lọc + phân trang   |
 | PATCH  | `/api/admin/quotes/{id}/status`                   | Đổi trạng thái: new/contacted/quoted/done/cancelled |
 | DELETE | `/api/admin/quotes/{id}`                          | Xoá yêu cầu                             |
+| GET/POST | `/api/admin/products`                           | Danh sách (kể cả đang ẩn) / thêm sản phẩm |
+| PUT/DELETE | `/api/admin/products/{id}`                    | Sửa / xoá sản phẩm                      |
+| PATCH  | `/api/admin/products/{id}/active`                 | Bật/tắt hiển thị                        |
+| POST   | `/api/admin/upload` (multipart `file`)            | Tải ảnh, trả về `url`                   |
 
 ## Trang quản trị
 
 - Đường dẫn: `/quan-tri` (không có link công khai trên site).
 - Đăng nhập bằng mật khẩu cấu hình ở `Admin:Password` (`appsettings.json`) hoặc biến môi trường `ADMIN_PASSWORD` trong `.env` khi chạy Docker. Mặc định `admin123` – **đổi trước khi đưa lên production**.
-- Chức năng: thống kê theo trạng thái, lọc, tìm kiếm (tên/SĐT/sản phẩm/ghi chú), xem chi tiết (giấy, gia công, ghi chú, mở Zalo), đổi trạng thái, xoá.
+- Tab **Yêu cầu báo giá**: thống kê theo trạng thái, lọc, tìm kiếm (tên/SĐT/sản phẩm/ghi chú), xem chi tiết (giấy, gia công, ghi chú, mở Zalo), đổi trạng thái, xoá.
+- Tab **Sản phẩm**: thêm / sửa / ẩn-hiện / xoá sản phẩm, tải ảnh lên (jpg, png, webp, gif ≤ 10MB) hoặc dán link ảnh. Slug tự sinh từ tên; đơn giá tính toán tự lấy từ "giá hiển thị" nếu bỏ trống.
+- Ảnh tải lên lưu ở volume `uploads` (`/app/uploads` trong container API) và phục vụ tại `/uploads/...`.
 
 ## Deploy production (VM dùng chung Caddy)
 
