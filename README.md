@@ -71,3 +71,23 @@ docker-compose.yml
 - Đường dẫn: `/quan-tri` (không có link công khai trên site).
 - Đăng nhập bằng mật khẩu cấu hình ở `Admin:Password` (`appsettings.json`) hoặc biến môi trường `ADMIN_PASSWORD` trong `.env` khi chạy Docker. Mặc định `admin123` – **đổi trước khi đưa lên production**.
 - Chức năng: thống kê theo trạng thái, lọc, tìm kiếm (tên/SĐT/sản phẩm/ghi chú), xem chi tiết (giấy, gia công, ghi chú, mở Zalo), đổi trạng thái, xoá.
+
+## Deploy production (VM dùng chung Caddy)
+
+Máy chủ đã có `proxy-caddy` giữ cổng 80/443, mỗi app một file trong `~/proxy/sites/`.
+
+```bash
+# lần đầu
+git clone https://github.com/minhhung19872002/InAnThao.git ~/apps/inanthao && cd ~/apps/inanthao
+cp .env.example .env    # đặt POSTGRES_PASSWORD, ADMIN_PASSWORD mạnh; DOMAIN=inanthao.bluestar.com.vn
+./deploy/deploy.sh --no-pull
+cp deploy/caddy/inanthao.caddy ~/proxy/sites/
+docker network connect inanthao_inanthao proxy-caddy   # + khai báo network trong ~/proxy/docker-compose.yml
+docker exec proxy-caddy caddy reload --config /etc/caddy/Caddyfile
+
+# cập nhật
+cd ~/apps/inanthao && ./deploy/deploy.sh
+```
+
+`docker-compose.prod.yml` tắt mọi cổng publish; Caddy vào network `inanthao_inanthao` và trỏ tới `inanthao-web:80`.
+DNS: bản ghi A `inanthao.bluestar.com.vn` → IP máy chủ, Caddy tự xin chứng chỉ Let's Encrypt.

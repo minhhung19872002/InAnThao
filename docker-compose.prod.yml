@@ -1,0 +1,23 @@
+# Production overlay: run behind the host's shared reverse proxy (Caddy) that owns ports 80/443.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+#
+# Nothing is published to the host. The proxy joins network `inanthao_inanthao` and forwards to
+# `inanthao-web:80` (nginx serves the SPA and proxies /api to the API container).
+# Caddy site template: deploy/caddy/inanthao.caddy
+services:
+  db:
+    ports: !override []
+
+  api:
+    ports: !override []
+    environment:
+      Cors__Origins__0: "https://${DOMAIN:-inanthao.bluestar.com.vn}"
+      Cors__Origins__1: "http://localhost:5173"
+
+  web:
+    ports: !override []
+
+networks:
+  default:
+    name: inanthao_inanthao

@@ -1,0 +1,23 @@
+# In An Thảo — site file for the shared Caddy proxy (~/proxy/sites/inanthao.caddy).
+# Caddy must be on network `inanthao_inanthao`:
+#   docker network connect inanthao_inanthao proxy-caddy   (and declare it in ~/proxy/docker-compose.yml)
+#   docker exec proxy-caddy caddy reload --config /etc/caddy/Caddyfile
+inanthao.bluestar.com.vn {
+	encode zstd gzip
+
+	# OpenAPI document and health probe are not needed publicly.
+	@chan path /openapi /openapi/* /health
+	respond @chan 404
+
+	# Full container name: Caddy sits on many networks, short names can collide.
+	reverse_proxy inanthao-web:80
+
+	request_body {
+		max_size 20MB
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}
