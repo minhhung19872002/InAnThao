@@ -1,0 +1,64 @@
+# In An Thảo – Website xưởng in
+
+Website giới thiệu và báo giá cho **Xưởng In An Thảo** (inanthao.com), dựng theo bản thiết kế Claude Design `In An Thao.dc.html`.
+
+| Layer    | Stack                                           |
+| -------- | ----------------------------------------------- |
+| Frontend | React 19 (JavaScript) + Vite + React Router     |
+| Backend  | ASP.NET Core 9 Minimal API + EF Core 9 (Npgsql) |
+| Database | PostgreSQL 16                                   |
+| Infra    | Docker Compose (db + api + nginx web)           |
+
+## Chạy bằng Docker (khuyến nghị)
+
+```bash
+cp .env.example .env        # sửa port nếu máy đã dùng 5432 / 8080
+docker compose up -d --build
+```
+
+- Web: http://localhost:8080 (hoặc `WEB_PORT` trong `.env`)
+- API: http://localhost:5000/api (OpenAPI: http://localhost:5000/openapi/v1.json)
+- Postgres: `localhost:5432`, db `inanthao`, user/pass `postgres/postgres`
+
+API tự chạy migration và seed dữ liệu danh mục/sản phẩm khi khởi động.
+
+## Chạy dev không Docker
+
+```bash
+# 1. Postgres (bất kỳ instance nào), rồi chỉnh ConnectionStrings:Default trong backend/InAnThao.Api/appsettings.json
+# 2. API
+cd backend/InAnThao.Api && dotnet run        # http://localhost:5000
+# 3. Web (Vite proxy /api -> localhost:5000)
+cd frontend && npm install && npm run dev    # http://localhost:5173
+```
+
+## Cấu trúc
+
+```
+backend/
+  InAnThao.Api/
+    Data/         Entities, AppDbContext, DbSeeder, Migrations
+    Endpoints/    CatalogEndpoints (site, categories, products, estimate), QuoteEndpoints
+    Services/     PricingService (hệ số giấy × gia công, giảm 15% từ 500 sp)
+    Contracts/    DTOs
+frontend/
+  src/
+    api/client.js        fetch wrapper + định dạng tiền
+    components/          TopBar, Header (dropdown nav), Hero, Ticker, Catalog, Steps, Why, QuoteForm, Footer, ProductCard
+    pages/               Home, ProductDetail (/san-pham/:slug)
+    siteContext.jsx      nội dung tĩnh + danh mục dùng chung (có fallback khi API lỗi)
+    styles.css           token màu/typography từ design + responsive
+docker-compose.yml
+```
+
+## API chính
+
+| Method | Route                                             | Mô tả                                   |
+| ------ | ------------------------------------------------- | --------------------------------------- |
+| GET    | `/api/site`                                       | Thông tin xưởng, stats, ticker, steps…  |
+| GET    | `/api/categories`                                 | Danh mục + tuỳ chọn giấy + thông số     |
+| GET    | `/api/products?category=thiep-cuoi`               | Danh sách sản phẩm (lọc theo danh mục)  |
+| GET    | `/api/products/{slug}`                            | Chi tiết + gallery + mẫu tương tự       |
+| GET    | `/api/estimate?category=&product=&qty=&paperId=&finishId=` | Ước tính giá                   |
+| POST   | `/api/quotes`                                     | Gửi yêu cầu báo giá                     |
+| GET    | `/api/quotes`                                     | Danh sách yêu cầu (dành cho quản trị)   |
